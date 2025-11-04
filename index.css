@@ -1,14 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face{
+    font-family: 'ClashFuente';
+    src: url(/Fuente/YouBlockhead.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body{
     overflow-x: hidden;
+    background-image: url(background_blue.jpg);
+}
+.crdecks-titulo{
+    margin-top: 10%;
+}
+.crdecks-titulo h1{
+    color: rgb(255, 255, 255);
+    font-family: 'ClashFuente';
+    font-size: 60px;
+}
+.crdecks-titulo img{
+    height:100px;
+    margin-left: 20px;
 }
 .contenedor-inicio{
-    margin-top: 15rem;
+    margin-top: 8%;
     height : 450px;
     width: 700px;
     border-radius: 15px;
     padding: 20px;
-    background-color: rgb(45, 89, 220)
+    background-color: rgba(45, 89, 220, 0.457)
 }
 .contenedor-inicio2{
     border-radius: 15px;

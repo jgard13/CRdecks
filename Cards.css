@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+body{
+    overflow-x: hidden;
+    background-image: url("background_blue.jpg");
+}
+.Contenedor-cartas{
+    margin-top: 200px;
+}
+.Botones{
+    margin-top: 50px;
+}
+/*Esta clase es unicamente con fines esteticos para la revision del proyecto(Esta FEO), por lo que de igual
+manera la parte del .js perdera funcionalidad ya que solo mostrare imagenes de ejemplo sin base de datos y seran removidas en un futuro
+al igual que las imagenes en el html
+*/
+.carta{
+    height: 200px;
+    width: auto;
+}
+
+
+.Promedio{
+    margin-top: 50px;
+    font-size: 20px;
+    color: rgba(245, 245, 245, 0.792);
+}
