@@ -35,3 +35,21 @@ app.get('/cards', (req, res) => {
 app.listen(port,()=>{
     console.log("Puerto == ", port);
 });
+
+//Primer ruta por fin para registrar usuarios
+app.post('/registro', (req, res) => {
+    const { username, password } = req.body;
+    if (!username||!password) {
+        return res.status(400).json({ message: "Faltan datos" });
+    }
+
+    const sql = "INSERT INTO usuarios (username, password) VALUES (?, ?)";
+
+    db.query(sql, [username, password], (err, result) => {
+        if (err) {
+            console.error("Error al insertar: ", err);
+            return res.status(500).json({ message: "Error en el servidor" });
+        }
+        res.json({ message: "Usuario registrado correctamente" });
+    });
+});
