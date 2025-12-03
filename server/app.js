@@ -70,5 +70,6 @@ app.post('/login', (req, res) =>{
         if(result.length === 0){
             return res.status(401).json({message: "Usuario o contraseña incorrectos"});
         }
+        res.json({message: "Sesion Iniciada"});
     });
 });
