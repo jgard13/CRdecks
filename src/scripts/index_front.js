@@ -46,3 +46,36 @@ Registro.addEventListener('click', async (e) => {
         console.error("Error:", error);
     }
 });
+
+const Login = document.getElementById('InicioSesion');
+Login.addEventListener('click', async(e) =>{
+    e.preventDefault();
+
+    const username = document.getElementById('Usuario');
+    const password = document.getElementById('Password');
+
+    const body = {
+        username,
+        password
+    };
+
+    try{
+        const res = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+        alert(data.message);
+
+        if(res.ok){
+            window.location.href = "/Cards.html";
+        }
+
+    }catch(error){
+        console.error("Error:", error);
+    }
+});
