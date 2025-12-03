@@ -53,3 +53,22 @@ app.post('/registro', (req, res) => {
         res.json({ message: "Usuario registrado correctamente" });
     });
 });
+
+//Ruta login
+app.post('/login', (req, res) =>{
+    const {username, password} = req.body;
+    if (!username||!password) {
+        return res.status(400).json({ message: "Faltan datos" });
+    }
+
+    const sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
+    db.query(sql, [username, password], (err, result) => {
+        if(err){
+            console.error("Error al consultar", err);
+            return res.status(500).json({message: "Error en el servidor"});
+        }
+        if(result.length === 0){
+            return res.status(401).json({message: "Usuario o contraseña incorrectos"});
+        }
+    });
+});
