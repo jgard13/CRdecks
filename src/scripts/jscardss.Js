@@ -23,7 +23,7 @@ function actualizarPromedioElixir(deck) {
         return;
     }
     const totalElixir = deck.reduce((sum, card) => sum + card.ELIXIR_COST, 0);
-    const promedio = (totalElixir / deck.length).toFixed(1); // Muestra un decimal
+    const promedio = (totalElixir / deck.length).toFixed(1);
     
     document.querySelector(".Promedio").textContent = `Promedio Elixir: ${promedio}`;
 }
@@ -36,12 +36,15 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
     for (let i = 1; i <= NUM_CARDS; i++) {
         const cardElement = document.getElementById(`Card_${i}`);
         if (cardElement) {
+             cardElement.classList.remove('bg-primary');
+             cardElement.classList.add('bg-secondary');
              cardElement.innerHTML = `<div class="d-flex justify-content-center align-items-center" style="height: 100%;"><div class="spinner-border text-white" role="status"><span class="visually-hidden">Cargando...</span></div></div>`;
         }
     }
     const promesasCartas = deckIDs.map((id, index) => {
         const cardElementId = `Card_${index + 1}`; 
         const cartaElemento = document.getElementById(cardElementId);
+        
         return fetch('/Cards/GetByID', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -60,20 +63,30 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
             
             console.log(`[CLIENT] Recibido OK para ${cardElementId}: ${carta.NAME}`);
             fetchedCards.push(carta); 
+            let finalImagePath = carta.IMAGE_PATH;
+            let isEvolved = false;
+            if (carta.HAS_EVOLUTION === 1 && (index === 0 || index === 1)) {
+                if (carta.EVOLUTION_IMAGE_PATH) {
+                    finalImagePath = carta.EVOLUTION_IMAGE_PATH;
+                    isEvolved = true;
+                    console.log(`[CLIENT] Carta en posición ${index + 1} (${carta.NAME}) es EVOLUCIONADA.`);
+                }
+            }
 
             if (cartaElemento) {
+                cartaElemento.classList.toggle('bg-primary', isEvolved);
+                cartaElemento.classList.toggle('bg-secondary', !isEvolved);
                 cartaElemento.innerHTML = `
                     <div class="d-flex flex-column align-items-center justify-content-center p-1" style="height: 100%;">
                         
                         <img 
-                            src="${carta.IMAGE_PATH}" 
+                            src="${finalImagePath}" 
                             alt="${carta.NAME}" 
                             class="img-fluid" 
-                            style="max-height: 80px; width: auto; margin-bottom: 5px;"
+                            style="max-height: 200px; width: auto; margin-bottom: 5px; ${isEvolved ? 'border: 3px solid #6c5ce7; border-radius: 10px;' : ''}"
                         >
                         
-                        <h6 class="mb-0 text-truncate" style="max-width: 100%; font-size: 0.85rem;">${carta.NAME}</h6>
-                        <p class="mb-0 small">Elixir: ${carta.ELIXIR_COST}</p>
+                        ${isEvolved ? '<span class="badge bg-info" style="font-size: 0.6rem;">EVO</span>' : ''}
                     </div>
                 `;
             }
@@ -81,11 +94,14 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
         .catch(error => {
             console.error(`[CLIENT] FALLÓ la carga de ${cardElementId} (ID ${id}):`, error.message);
             if (cartaElemento) {
+                 cartaElemento.classList.remove('bg-primary');
+                 cartaElemento.classList.add('bg-secondary');
                  cartaElemento.innerHTML = `<p class="p-2 text-danger small">Error ID ${id}:<br>${error.message.substring(0, 20)}...</p>`;
             }
         });
     });
     await Promise.all(promesasCartas);
     console.log("[CLIENT] Carga del mazo finalizada.");
+
     actualizarPromedioElixir(fetchedCards);
 });
