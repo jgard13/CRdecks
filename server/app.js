@@ -72,4 +72,12 @@ app.post('/login', (req, res) =>{
         }
         res.json({message: "Sesion Iniciada"});
     });
+
+    //Ruta Cards
+    app.post('/Cards',(req,res)=> {
+        const{ID, NAME,ELIXIR_COST,RARITY,IMAGE_PATH,HAS_EVOLUTION,EVOLUTION_IMAGE_PATH} = req.body;
+
+
+        const sql = "SELECT * FROM cards WHERE ID = ?";
+    });
 });
