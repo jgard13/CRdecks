@@ -43,7 +43,7 @@ app.post('/registro', (req, res) => {
         return res.status(400).json({ message: "Faltan datos" });
     }
 
-    const sql = "INSERT INTO usuarios (username, password) VALUES (?, ?)";
+    const sql = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
 
     db.query(sql, [username, password], (err, result) => {
         if (err) {
@@ -61,7 +61,7 @@ app.post('/login', (req, res) =>{
         return res.status(400).json({ message: "Faltan datos" });
     }
 
-    const sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
+    const sql = "SELECT * FROM users WHERE username = ? AND password_hash = ?";
     db.query(sql, [username, password], (err, result) => {
         if(err){
             console.error("Error al consultar", err);
