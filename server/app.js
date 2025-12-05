@@ -151,7 +151,7 @@ app.post('/Mazos/GuardarMazo', (req, res) => {
                 });
             })
             .catch(error => {
-                console.error("[SAVE_MAZO] Error guardando cartas:", error.message);
+                console.error("Error guardando cartas:", error.message);
                 return res.status(500).json({ message: "Error al guardar cartas del mazo." });
             });
     });
@@ -177,6 +177,7 @@ app.get('/Mazos/GetByUser/:userID', (req, res) => {
     });
 });
 
+//obtengo las cartas dentro de los mazos pertenicientes a un solo id
 app.get('/Mazos/GetCards/:deckID', (req, res) => {
     const deckID = req.params.deckID;
 
@@ -190,7 +191,7 @@ app.get('/Mazos/GetCards/:deckID', (req, res) => {
 
     db.query(sql, [deckID], (err, result) => {
         if (err) {
-            console.error("[GET_DECK_CARDS] Error:", err.message);
+            console.error("Error:", err.message);
             return res.status(500).json({ message: "Error obteniendo cartas del mazo." });
         }
         res.status(200).json({ cards: result });
