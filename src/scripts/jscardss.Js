@@ -122,6 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+const Historial = document.getElementById("BtnHistorial");
+Historial.addEventListener("click", async() =>{
+    window.location.href = "/Historial.html";
+});
 
 const CerrarSesion = document.getElementById("BotonCerrar");
 CerrarSesion.addEventListener("click", async() => {
