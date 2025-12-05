@@ -104,7 +104,42 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
     console.log("[CLIENT] Carga del mazo finalizada.");
 
     actualizarPromedioElixir(fetchedCards);
+
+   // Guardar el mazo para el servidor
+    try {
+        const idGuardada = localStorage.getItem("idUsuario");
+        if (!idGuardada) {
+            console.warn("No hay usuario logueado (idUsuario). No se guardará el mazo.");
+        } else {
+            const promedioElixir = parseFloat(
+                (fetchedCards.reduce((a,b) => a + b.ELIXIR_COST, 0) / fetchedCards.length).toFixed(1)
+            );
+
+            const response = await fetch('/Mazos/GuardarMazo', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    userID: parseInt(idGuardada, 10),
+                    deck: fetchedCards,
+                    promedioElixir: promedioElixir
+                })
+            });
+
+            if (!response.ok) {
+                const err = await response.json().catch(() => ({}));
+                console.error("Error guardando mazo:", response.status, err);
+            } else {
+                const data = await response.json();
+                console.log("Mazo guardado. deckID:", data.deckID);
+            }
+        }
+    }catch(error) {
+        console.error("No se pudo guardar el mazo:", error);
+    }
+
 });
+
+
 //Cuando carga la pagina modifica donde esta el usuario a traves de la ID
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -122,6 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+const Historial = document.getElementById("BtnHistorial");
+Historial.addEventListener("click", async() =>{
+    window.location.href = "/Historial.html";
+});
 
 const CerrarSesion = document.getElementById("BotonCerrar");
 CerrarSesion.addEventListener("click", async() => {
