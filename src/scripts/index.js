@@ -43,7 +43,8 @@ Login.addEventListener('click', async(e) =>{
 
         if(res.ok){
             window.location.href = "/Cards.html";
-            localStorage.setItem("usuario", data.username); //Se guarda localmente el nombre del usuario
+            localStorage.setItem("usuario", data.username);//Se guarda localmente el nombre y id del usuario
+            localStorage.setItem("idUsuario", data.user_id);
         }
 
     }catch(error){
