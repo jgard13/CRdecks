@@ -6,56 +6,62 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles/Description.css">
-    
-
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif;">
 
 <nav class="py-2 px-3 d-flex align-items-center justify-content-between" style="background-color: #305cde;">
     <div class="d-flex align-items-center">
-        <img src="/img/FondosIconos/TruIconoU.png" style="width: 35px; height: 35px; margin-right: 10px;" alt ="Foto Usuario">
-        <span class="fw-bold text-white" style="font-size: 1.8rem;" id ="USUARIo">USUARIO</span>
+      <img src="/img/FondosIconos/TruIconoU.png" style="width: 35px; height: 35px; margin-right: 10px;" alt ="Foto Usuario">
+      <span class="fw-bold text-white" style="font-size: 1.8rem;" id ="USUARIo">USUARIO</span>
     </div>
+    <!-- Botón menú (abre el offcanvas) -->
     <button class="btn text-white fs-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuDerecho" aria-controls="menuDerecho">
-    ☰
+      ☰
     </button>
-</nav>
+  </nav>
 
-<div class="container-fluid d-flex align-items-center justify-content-center" style="margin-top:20px">
-    <div class="row">
-        <div class="col">
-            <div class="card-container-cr">
-                <div class="header-section-cr">
-                    <div class="cost-badge-cr">4</div>
-                    <div class="title-details-cr">
-                        <h1 class="card-title-cr" id="NombreCarta">Mosquetera</h1>
-                    </div>
-                    </div>
-                    <div class="main-content-cr">
-                        <div class="image-placeholder-cr"></div>
-                            <div class="card-stats-cr">
-                                <div class="stat-badge-cr orange">
-                                    <span class="stat-label" id="CalidadCarta">CALIDAD</span>
-                                </div>
-                                <div class="stat-badge-cr brown">
-                                    <span class="stat-label" id="TipoCarta">TIPO</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="description-box-cr">
-                            <p class="description-text-cr" id="Description">
-                                   
-                        </div>
-                    </div>
+<div class="container-fluid d-flex flex-column align-items-center justify-content-center" style="margin-top: 80px;"> 
+    <div class="card p-3 shadow-lg" style="max-width: 600px; background-color: #0d0f1e; border-radius: 12px; border: 4px solid #9ca6b0;">
+        <div class="row g-0 mb-3 align-items-start"> 
+            <div class="col-4 d-flex justify-content-center">
+                <img 
+                    src="img/cartas/Musk.png" 
+                    class="img-fluid" 
+                    style="height: 250px; width: auto; border-radius: 10px; border: 4px solid #9962a9; padding: 2px;"
+                    alt="Imagen de la Mosquetera">
+                </div>
+        <div class="col-8 d-flex flex-column align-items-start ps-3">  
+            <h3 id="NombreCarta" class="text-white fw-bold mb-2" style="font-size: 1.8rem; text-shadow: 2px 2px #000; letter-spacing: 1px; text-align: left;">
+                Mosquetera
+            </h3>
+            <div class="mb-3 w-100">
+    
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span id="ElixirCost" class="badge text-white" style="background-color: #9962a9; font-size: 1rem; padding: 6px 10px; border-radius: 50%;">
+                     4
+                    </span>
+                    <span id="Rareza" class="badge bg-primary text-uppercase fw-bold" style="font-size: 0.9rem; padding: 4px 8px; background-color: #000000 !important;">
+                        Rara
+                    </span>
+                </div>
+            <hr class="w-100" style="border-top: 2px solid #4a5158; margin-top: 0; margin-bottom: 10px;">
+                <div class="p-0 text-start">
+                    <h4 id="Description" class="text-white-50" style="font-size: 1.1rem; line-height: 1.5; margin-top: 0;">
+                    Throws his anchor to pull himself to buildings or to pull an enemy to him. Upon impact, the enemy is briefly stunned.
+                    </h4>
                 </div>
             </div>
+          </div> 
         </div>
     </div>
 </div>
-    <div class="offcanvas offcanvas-end text-center text-white" tabindex="-1" id="menuDerecho"
-        aria-labelledby="menuDerechoLabel"
-        style="background-color: #2851cc; width: 250px;">
+
+
+</div>
+<div class="offcanvas offcanvas-end text-center text-white" tabindex="-1" id="menuDerecho"
+    aria-labelledby="menuDerechoLabel"
+    style="background-color: #2851cc; width: 250px;">
         <div class="offcanvas-header border-bottom border-light">
             <h5 id="menuDerechoLabel" class="fw-bold mb-0">MENÚ</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
@@ -67,6 +73,6 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/scripts/description.js"></script>
+<script src="/scripts/Description.js"></script>
 </body>
 </html>

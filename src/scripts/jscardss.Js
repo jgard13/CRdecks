@@ -74,6 +74,7 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
             }
 
             if (cartaElemento) {
+                cartaElemento.setAttribute('data-card-id', carta.ID);
                 cartaElemento.classList.toggle('bg-primary', isEvolved);
                 cartaElemento.classList.toggle('bg-secondary', !isEvolved);
                 cartaElemento.innerHTML = `
@@ -167,7 +168,13 @@ CerrarSesion.addEventListener("click", async() => {
 });
 
 const VerCarta = document.getElementById("Cartas");
-VerCarta.addEventListener("click", () => {
-
-    window.location.href = "/Description.html";
+VerCarta.addEventListener("click", (event) => {
+    const cardElement = event.target.closest('[data-card-id]');
+    if (cardElement) {
+        const cardID = cardElement.getAttribute('data-card-id');
+        console.log(`[CLIENT] Carta seleccionada con ID: ${cardID}`);
+        localStorage.setItem("selectedCardID", cardID);
+        window.location.href = "/Description.html";
+    }
 });
+
