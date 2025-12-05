@@ -63,7 +63,9 @@ async function agregarMazoHTML(deck) {
                 <img src="${carta.IMAGE_PATH}" 
                      alt="${carta.NAME}" 
                      class="img-fluid" 
-                     style="max-height: 150px; margin-top:10px;">
+                     style="max-height: 150px; margin-top:10px;"
+                     data-url="${carta.Url_Card}"
+                     >
             </div>
         `;
     });
@@ -80,5 +82,28 @@ async function agregarMazoHTML(deck) {
     document.getElementById("ContHistorial").appendChild(mazoDiv);
 }
 
+//Copiar mazo por cada uno de los mazos en el historial.
+document.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("CopiarHistorial")) {
 
+        const mazoDiv = event.target.closest(".MazoHistorial");
+        const cartas = mazoDiv.querySelectorAll("img[data-url]");
+
+        const deckArray = [];
+        cartas.forEach(img => deckArray.push(img.dataset.url));
+
+        const urlini = "clashroyale://copyDeck?deck=";
+        const urlfin = "&tt=159000000&l=Royals";
+        const urlFinal = `${urlini}${deckArray.join(";")}${urlfin}`;
+
+        try {
+            await navigator.clipboard.writeText(urlFinal);
+            alert("¡Mazo copiado al portapapeles!");
+        } catch (error) {
+            alert("No se pudo copiar.");
+        }
+
+        window.location.href = urlFinal;
+    }
+});
 
