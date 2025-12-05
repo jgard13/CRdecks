@@ -189,9 +189,12 @@ CopiarMazo.addEventListener("click", () => {
     });
     console.log("ArrayCopiarMazo:", ArrayCopiarMazo); 
 
-    const deckString = ArrayCopiarMazo.join(";");
+    let deckString = ArrayCopiarMazo.join(";");
+    if (deckString.endsWith(";")) {
+        deckString = deckString.slice(0, -1); 
+        console.log("[CLIENT] Se eliminó el punto y coma sobrante al final.");
+    }
     const urlFinal = `${urlini}${deckString}${urlfin}`;
-
     console.log("URL del mazo:", urlFinal);
     window.location.href = urlFinal;
 });
