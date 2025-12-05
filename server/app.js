@@ -71,7 +71,9 @@ app.post('/login', (req, res) =>{
         }
         res.json({
             message: "Sesion Iniciada",
-            "username": result[0].username //Igual para enviar el usuario
+            user_id: result[0].user_id,
+            username: result[0].username //Igual para enviar el usuario
+            
         });
         
     });
@@ -107,5 +109,70 @@ app.post('/Cards/GetByID', (req, res) => {
             message: "Datos de la carta recuperados con éxito.",
             card: cardData 
         });
+    });
+});
+
+app.post('/Mazos/GuardarMazo', (req, res) => {
+    const { userID, deck, promedioElixir } = req.body;
+
+    if (!userID || !deck || !Array.isArray(deck) || deck.length === 0) {
+        return res.status(400).json({ message: "Datos invalidos. Se necesita userID y un deck no vacío." });
+    }
+
+    const sqlMazo = "INSERT INTO decks (user_id, avg_elixir) VALUES (?, ?)";
+    db.query(sqlMazo, [userID, promedioElixir], (err, result) => {
+        if (err) {
+            console.error("Error creando mazo:", err.message);
+            return res.status(500).json({ message: "Error al crear el mazo." });
+        }
+
+        const idMazo = result.insertId;
+        console.log("Nuevo deck_id:", idMazo);
+
+        const cartasSql = "INSERT INTO decks_cards (deck_id, card_id, position) VALUES (?, ?, ?)";
+
+        const inserts = deck.map((card, index) => {
+            return new Promise((resolve, reject) => {
+                db.query(cartasSql, [idMazo, card.ID, index + 1], (err) => {
+                    if (err) {
+                        console.error("Error guardando carta:", err.message);
+                        return reject(err);
+                    }
+                    resolve();
+                });
+            });
+        });
+
+        Promise.all(inserts)
+            .then(() => {
+                res.status(200).json({
+                    message: "Mazo guardado correctamente",
+                    deckID: idMazo
+                });
+            })
+            .catch(error => {
+                console.error("[SAVE_MAZO] Error guardando cartas:", error.message);
+                return res.status(500).json({ message: "Error al guardar cartas del mazo." });
+            });
+    });
+});
+
+
+app.get('/Mazos/GetByUser/:userID', (req, res) => {
+    const userID = req.params.userID;
+
+    const sql = `
+        SELECT deck_id, avg_elixir, created_at
+        FROM decks
+        WHERE user_id = ?
+        ORDER BY created_at DESC
+    `;
+
+    db.query(sql, [userID], (err, result) => {
+        if (err) {
+            console.error("[GET_DECKS] Error:", err.message);
+            return res.status(500).json({ message: "Error al obtener mazos." });
+        }
+        res.status(200).json({ decks: result });
     });
 });
