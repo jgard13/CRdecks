@@ -105,3 +105,8 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
 
     actualizarPromedioElixir(fetchedCards);
 });
+
+const CerrarSesion = document.getElementById("BotonCerrar");
+CerrarSesion.addEventListener("click", async() => {
+    window.location.href = "/index.html";
+});
