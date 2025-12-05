@@ -1,5 +1,8 @@
 const MAX_CARD_ID = 121; 
 const NUM_CARDS = 8;
+let deckIDs = [];
+let fetchedCards = [];
+
 
 /**
  * Genera una lista de IDs únicos dentro del rango [1, max].
@@ -30,7 +33,7 @@ function actualizarPromedioElixir(deck) {
 
 document.getElementById("btnGenerar").addEventListener("click", async () => {
     const deckIDs = generarNumerosUnicos(NUM_CARDS, MAX_CARD_ID); 
-    const fetchedCards = []; 
+    fetchedCards = []; 
     
     console.log(`[CLIENT] IDs generados para el mazo: ${deckIDs.join(', ')}`);
     for (let i = 1; i <= NUM_CARDS; i++) {
@@ -62,7 +65,7 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
             const carta = data.card;
             
             console.log(`[CLIENT] Recibido OK para ${cardElementId}: ${carta.NAME}`);
-            fetchedCards.push(carta); 
+            fetchedCards[index] = carta;
             let finalImagePath = carta.IMAGE_PATH;
             let isEvolved = false;
             if (carta.HAS_EVOLUTION === 1 && (index === 0 || index === 1)) {
@@ -143,7 +146,6 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
 
 //Cuando carga la pagina modifica donde esta el usuario a traves de la ID
 document.addEventListener("DOMContentLoaded", () => {
-
     const usuarioSpan = document.getElementById("USUARIO");
     const usuarioGuardado = localStorage.getItem("usuario");
     
@@ -154,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
             usuarioSpan.textContent = "No Jala"; 
         }
     }
-
 });
 
 const Historial = document.getElementById("BtnHistorial");
@@ -178,3 +179,19 @@ VerCarta.addEventListener("click", (event) => {
     }
 });
 
+const CopiarMazo = document.getElementById("btnCopiar");
+const urlini = "clashroyale://copyDeck?deck=";
+const urlfin = "&tt=159000000&I=Royals";
+CopiarMazo.addEventListener("click", () => {
+    const ArrayCopiarMazo = [];
+    fetchedCards.forEach((card, index) => {
+        ArrayCopiarMazo[index] = card.Card_URL;
+    });
+    console.log("ArrayCopiarMazo:", ArrayCopiarMazo); 
+
+    const deckString = ArrayCopiarMazo.join(";");
+    const urlFinal = `${urlini}${deckString}${urlfin}`;
+
+    console.log("URL del mazo:", urlFinal);
+    window.location.href = urlFinal;
+});

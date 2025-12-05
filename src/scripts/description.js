@@ -29,7 +29,6 @@ Historial.addEventListener("click", async() =>{
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Obtener la ID de la carta guardada
     const selectedCardID = localStorage.getItem("selectedCardID");
 
     if (selectedCardID) {
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch('/Cards/GetByID', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // Asegúrate de enviar la ID como número
             body: JSON.stringify({ ID: parseInt(selectedCardID, 10) }) 
         })
         .then(response => {
@@ -54,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const rarezaElement = document.getElementById("Rareza");
             const descripcionElement = document.getElementById("Description");
             const imagenElement = document.querySelector(".container-fluid img");
+            let isEvolved = false;
 
             if (nombreElement) {
                 nombreElement.textContent = carta.NAME;
@@ -70,7 +69,26 @@ document.addEventListener("DOMContentLoaded", () => {
             if (imagenElement) {
                 imagenElement.src = carta.IMAGE_PATH; 
                 imagenElement.alt = carta.NAME;
-            }
+                if (carta.HAS_EVOLUTION === 1 ) {
+                    const Cartaevo = document.getElementById("Imagen")
+                    Cartaevo.addEventListener("click", async() =>{
+                        if (carta.EVOLUTION_IMAGE_PATH) {
+                        if(isEvolved){
+                            finalImagePath = carta.IMAGE_PATH;
+                            imagenElement.src = carta.IMAGE_PATH;
+                            isEvolved = false;
+                            console.log(`[CLIENT] Carta en posición ${1} (${carta.NAME}) es ${carta.RARITY}.`);
+                        }else{
+                            finalImagePath = carta.EVOLUTION_IMAGE_PATH;
+                            imagenElement.src = carta.EVOLUTION_IMAGE_PATH;
+                            isEvolved = true;
+                            console.log(`[CLIENT] Carta en posición ${1} (${carta.NAME}) es EVOLUCIONADA.`);
+                        }
+                        
+                }
+            })
+
+        } }
 
             console.log(`[Description] Carta '${carta.NAME}' cargada exitosamente.`);
             localStorage.removeItem("selectedCardID");
