@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face{
+    font-family: 'ClashFuente';
+    src: url('/Fuente/YouBlockhead.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+    background-image: url(/img/FondosIconos/background_blue.jpg);
+}
+
+.card-container-cr {
+    width: 650px; 
+    height: 600px;
+    background-color: #2b3446; 
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #555;
+    color: white;
+    margin: 20px auto; 
+}
+
