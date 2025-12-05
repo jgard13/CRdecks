@@ -16,7 +16,6 @@ togglePassword.addEventListener('click', function() {
 });
 
 
-
 const Login = document.getElementById('InicioSesion');
 Login.addEventListener('click', async(e) =>{
     e.preventDefault();
@@ -37,12 +36,14 @@ Login.addEventListener('click', async(e) =>{
             },
             body: JSON.stringify(body)
         });
+        
 
         const data = await res.json();
         alert(data.message);
 
         if(res.ok){
             window.location.href = "/Cards.html";
+            localStorage.setItem("usuario", data.username); //Se guarda localmente el nombre del usuario
         }
 
     }catch(error){
