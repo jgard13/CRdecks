@@ -43,7 +43,7 @@ CREATE TABLE `cards` (
 -- Dumping data for table `cards`
 --
 
-INSERT INTO `cards` (`ID`, `NAME`, `ELIXIR_COST`, `RARITY`, `description`, `Url-card`, `IMAGE_PATH`, `HAS_EVOLUTION`, `EVOLUTION_IMAGE_PATH`) VALUES
+INSERT INTO `cards` (`ID`, `NAME`, `ELIXIR_COST`, `RARITY`, `description`, `Url_Card`, `IMAGE_PATH`, `HAS_EVOLUTION`, `EVOLUTION_IMAGE_PATH`) VALUES
 (1, 'Archer Queen', 5, 'Champion', 'She is fast, deadly and hard to catch. Beware of her invisibility!', '26000072', '/img/cartas/ArcherQueen.png', 0, NULL),
 (2, 'Boss Bandit', 5, 'Champion', 'The boss of the Forest Gang finally shows her face in the Arena! She uses her Dash ability to charge opponents, but don\'t look directly at her eyes!', '26000103', '/img/cartas/BossBandit.png', 0, NULL),
 (3, 'Golden Knight', 4, 'Champion', 'Charges into battle with a chain dash, bouncing between enemies. He\'s always looking for the next heroic deed!', '26000074', '/img/cartas/GoldenKnight.png', 0, NULL),
