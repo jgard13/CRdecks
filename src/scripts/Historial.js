@@ -14,7 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+const Generar = document.getElementById("BtnGenerar");
+Generar.addEventListener("click", async()=>{
+    window.location.href = "/Cards.html"
+});
+
 const CerrarSesion = document.getElementById("BotonCerrar");
 CerrarSesion.addEventListener("click", async() => {
     window.location.href = "/index.html";
 });
+
