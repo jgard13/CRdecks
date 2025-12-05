@@ -25,7 +25,7 @@ function actualizarPromedioElixir(deck) {
     const totalElixir = deck.reduce((sum, card) => sum + card.ELIXIR_COST, 0);
     const promedio = (totalElixir / deck.length).toFixed(1);
     
-    document.querySelector(".Promedio").textContent = `Promedio Elixir: ${promedio}`;
+    document.querySelector(".Promedio").innerHTML = `Promedio Elixir:<br><br><img src="/img/FondosIconos/Elixir.webp" style="height: 35px; width: auto">${promedio}`;
 }
 
 document.getElementById("btnGenerar").addEventListener("click", async () => {
@@ -82,7 +82,7 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
                         <img 
                             src="${finalImagePath}" 
                             alt="${carta.NAME}" 
-                            class="img-fluid" 
+                            class="img-fluid Imagen" 
                             style="max-height: 200px; width: auto; margin-bottom: 5px; ${isEvolved ? 'border: 3px solid #6c5ce7; border-radius: 10px;' : ''}"
                         >
                         

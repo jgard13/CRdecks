@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face{
+    font-family: 'ClashFuente';
+    src: url('/Fuente/YouBlockhead.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
     overflow-x: hidden;
     background-image: url(/img/FondosIconos/background_blue.jpg);
@@ -8,19 +16,26 @@ body{
 }
 .Botones{
     margin-top: 50px;
-}
-/*Esta clase es unicamente con fines esteticos para la revision del proyecto(Esta FEO), por lo que de igual
-manera la parte del .js perdera funcionalidad ya que solo mostrare imagenes de ejemplo sin base de datos y seran removidas en un futuro
-al igual que las imagenes en el html
-*/
-.carta{
-    height: 200px;
-    width: auto;
+
 }
 
+.boton{
+    background-color: #305cde;
 
+}
+.boton:hover{
+    scale: 115%;
+    background-color: #2851cc;
+}
 .Promedio{
+    width: 100%;
+    text-align: center;
+    font-family: 'ClashFuente';
     margin-top: 50px;
     font-size: 20px;
     color: rgba(245, 245, 245, 0.792);
+}
+
+.Imagen:hover{
+    scale: 105%;
 }
