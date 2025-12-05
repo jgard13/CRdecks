@@ -157,7 +157,7 @@ app.post('/Mazos/GuardarMazo', (req, res) => {
     });
 });
 
-
+//endpoint para obtener datos de mazos generados por id
 app.get('/Mazos/GetByUser/:userID', (req, res) => {
     const userID = req.params.userID;
 
@@ -176,3 +176,24 @@ app.get('/Mazos/GetByUser/:userID', (req, res) => {
         res.status(200).json({ decks: result });
     });
 });
+
+app.get('/Mazos/GetCards/:deckID', (req, res) => {
+    const deckID = req.params.deckID;
+
+    const sql = `
+        SELECT cards.*
+        FROM decks_cards
+        INNER JOIN cards ON cards.ID = decks_cards.card_id
+        WHERE decks_cards.deck_id = ?
+        ORDER BY decks_cards.position ASC;
+    `;
+
+    db.query(sql, [deckID], (err, result) => {
+        if (err) {
+            console.error("[GET_DECK_CARDS] Error:", err.message);
+            return res.status(500).json({ message: "Error obteniendo cartas del mazo." });
+        }
+        res.status(200).json({ cards: result });
+    });
+});
+
