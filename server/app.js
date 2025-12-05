@@ -90,7 +90,7 @@ app.post('/Cards/GetByID', (req, res) => {
         console.warn(`[GET_BY_ID] ERROR 400: No se proporcionó el ID.`);
         return res.status(400).json({ message: "Se requiere el ID de la carta." });
     }
-    const sql = "SELECT ID, NAME, ELIXIR_COST, RARITY, IMAGE_PATH, HAS_EVOLUTION, EVOLUTION_IMAGE_PATH FROM cards WHERE ID = ?"; 
+    const sql = "SELECT ID, NAME, ELIXIR_COST, RARITY, IMAGE_PATH, HAS_EVOLUTION, EVOLUTION_IMAGE_PATH,description FROM cards WHERE ID = ?"; 
     
     console.log(`[GET_BY_ID] Ejecutando SQL: ${sql} con valor: ${ID}`);
 
@@ -107,7 +107,7 @@ app.post('/Cards/GetByID', (req, res) => {
         console.log(`[GET_BY_ID] Carta encontrada: ${cardData.NAME} (Costo: ${cardData.ELIXIR_COST}) - Ruta Imagen: ${cardData.IMAGE_PATH}`);
         res.status(200).json({ 
             message: "Datos de la carta recuperados con éxito.",
-            card: cardData 
+            card: cardData
         });
     });
 });

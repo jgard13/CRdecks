@@ -12,14 +12,66 @@ body {
     background-image: url(/img/FondosIconos/background_blue.jpg);
 }
 
-.card-container-cr {
-    width: 650px; 
-    height: 600px;
-    background-color: #2b3446; 
-    border-radius: 10px;
-    padding: 15px;
-    border: 2px solid #555;
-    color: white;
-    margin: 20px auto; 
+.container-fluid {
+    text-align: center;
+    padding: 10px; 
+    box-sizing: border-box;
 }
 
+#NombreCarta {
+    font-family: 'ClashFuente', sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px #000;
+    letter-spacing: 1px;
+}
+
+#ElixirCost {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #9d408c;
+    border-radius: 5px;
+    padding: 0 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#Rareza {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #ffffff; 
+    text-transform: uppercase;
+}
+
+.container-fluid img {
+    width: 200px; 
+    height: 240px;
+    object-fit: cover;  
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+
+#Description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #c0c0c0;
+    max-width: 90%; 
+    line-height: 1.4;
+    padding: 15px;
+    border-top: 1px solid #444; 
+    border-bottom: 1px solid #444;
+    margin-top: 10px;
+}
+
+.container-fluid > * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
