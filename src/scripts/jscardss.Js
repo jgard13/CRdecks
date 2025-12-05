@@ -181,8 +181,9 @@ VerCarta.addEventListener("click", (event) => {
 
 const CopiarMazo = document.getElementById("btnCopiar");
 const urlini = "clashroyale://copyDeck?deck=";
-const urlfin = "&tt=159000000&I=Royals";
-CopiarMazo.addEventListener("click", () => {
+const urlfin = "&tt=159000000&l=Royals";
+CopiarMazo.addEventListener("click", async () => {
+    event.preventDefault();
     const ArrayCopiarMazo = [];
     fetchedCards.forEach((card, index) => {
         ArrayCopiarMazo[index] = card.Card_URL;
@@ -197,4 +198,11 @@ CopiarMazo.addEventListener("click", () => {
     const urlFinal = `${urlini}${deckString}${urlfin}`;
     console.log("URL del mazo:", urlFinal);
     window.location.href = urlFinal;
+ try {
+        await navigator.clipboard.writeText(urlFinal);
+        alert("¡Mazo copiado al portapapeles! Ya puedes pegarlo en Clash Royale.");  
+    } catch (err) {
+        console.error("Error al copiar al portapapeles:", err);
+        alert("Error: No se pudo copiar automáticamente. La URL se mostrará en la consola.");
+    }
 });
