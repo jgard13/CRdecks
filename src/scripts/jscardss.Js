@@ -178,3 +178,13 @@ VerCarta.addEventListener("click", (event) => {
     }
 });
 
+const CopiarMazo = document.getElementById("btnCopiar")
+const urlini = "clashroyale ://copyDeck?deck=";
+const urlfin = "&tt=159000000&I=Royals";
+CopiarMazo.addEventListener("click",(event) =>{
+    const ArrayCopiarMazo = [];
+    
+   
+});
+
+
