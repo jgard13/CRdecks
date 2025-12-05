@@ -39,3 +39,29 @@ body{
 .Imagen:hover{
     scale: 105%;
 }
+
+.contenedor-historial{
+    margin: 30px;
+    background-color: #001247d2;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.MazoHistorial{
+    margin: 10px;
+    padding: 30px;
+    padding-left: 80px;
+    background-color: #1f3fa0;
+    border-radius: 15px;
+}
+
+.CopiarHistorial{
+    background-color: #a5aec9;
+    color: #000000 !important; 
+    scale: 140%;
+    margin-left: 70px;
+}
+
+.CopiarHistorial:hover{
+    background-color: #8e95a9;
+}
