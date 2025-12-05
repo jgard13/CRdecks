@@ -13,17 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+const Generar = document.getElementById("btnGenerar");
+Generar.addEventListener("click", async()=>{
+    window.location.href = "/Cards.html"
+});
+
 const CerrarSesion = document.getElementById("BotonCerrar");
 CerrarSesion.addEventListener("click", async() => {
     window.location.href = "/index.html";
 });
-const GenerarMazos = document.getElementById("btnGenerar");
-CerrarSesion.addEventListener("click", async() => {
-    window.location.href = "/Cards.html";
-});
+
 const Historial = document.getElementById("btnHistorial");
-CerrarSesion.addEventListener("click", async() => {
-    window.location.href = "/index.html";
+Historial.addEventListener("click", async() =>{
+    window.location.href = "/Historial.html";
 });
 
 document.addEventListener("DOMContentLoaded", () => {
