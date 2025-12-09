@@ -186,7 +186,7 @@ CopiarMazo.addEventListener("click", async () => {
     event.preventDefault();
     const ArrayCopiarMazo = [];
     fetchedCards.forEach((card, index) => {
-        ArrayCopiarMazo[index] = card.Card_URL;
+        ArrayCopiarMazo[index] = card.Url_Card;
     });
     console.log("ArrayCopiarMazo:", ArrayCopiarMazo); 
 
